@@ -24,8 +24,8 @@ Supporters point out that wind power produces no [19] once the turbines are buil
 There are drawbacks, however. The wind does not blow all the time, which means that wind power must be combined with other sources or with ways of storing energy. Some people also object to the [21] of turbines on the landscape, arguing that they spoil areas of natural beauty. Others have raised concerns about the risk to birds, although studies suggest that this is relatively small compared with other threats such as cats and collisions with [22] windows.
 
 Despite these [23], most experts believe that wind power will play a central role in the move away from fossil fuels. The real question is not whether it will expand, but how quickly governments are willing to invest in the [24] networks needed to carry its power to where it is needed.`,
-stems:['ELECTRIC','RELY','EMIT','DRAMA','IMPACT','REFLECT','RESERVE','TRANSMIT'],
-ans:[['electricity'],['reliable'],['emissions'],['dramatically'],['impact'],['reflective'],['reservations'],['transmission']]},
+stems:['ELECTRIC','RELY','EMIT','DRAMA','APPEAR','REFLECT','RESERVE','TRANSMIT'],
+ans:[['electricity'],['reliable'],['emissions'],['dramatically'],['appearance'],['reflective'],['reservations'],['transmission']]},
 p4:[
 {s1:'I\'m sure she wasn\'t at the meeting.',key:'CAN\'T',s2:'She ___ at the meeting.',ans:['can\'t have been']},
 {s1:'"I\'ll pay for the meal," said David.',key:'INSISTED',s2:'David ___ for the meal.',ans:['insisted on paying']},

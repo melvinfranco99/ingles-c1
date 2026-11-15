@@ -15,13 +15,13 @@ None of this means that all forgetting is healthy, [14] course. But it does sugg
 ans:[['at'],['but'],['It'],['it'],['thereby','thus'],['of'],['rather'],['but']]},
 p3:{title:'Teenagers and sleep',text:`Parents of teenagers have long complained about their children's apparent [17] to get out of bed in the morning. It is easy to put this down to laziness, but scientists now believe there is a sound [18] explanation.
 
-During adolescence, the body clock shifts, so that teenagers naturally feel sleepy later at night and wake later in the morning. Forcing them to start school at eight o'clock is, according to some researchers, the [19] of asking an adult to start work at five. The consequences of chronic sleep [20] are serious: tired teenagers find it harder to concentrate, are more prone to illness and are at greater risk of depression.
+During adolescence, the body clock shifts, so that teenagers naturally feel sleepy later at night and wake later in the morning. Forcing them to start school at eight o'clock is, according to some researchers, [19] to asking an adult to start work at five. The consequences of chronic sleep [20] are serious: tired teenagers find it harder to concentrate, are more prone to illness and are at greater risk of depression.
 
 In response, a number of schools have experimented with later start times. The results have been [21] encouraging. Attendance has improved, and students report feeling more alert. Some schools have even recorded a [22] rise in exam results.
 
 Not everyone is persuaded, however. Teachers' working hours would have to change, and the [23] for families with younger children could be considerable. Despite these practical difficulties, many experts argue that the evidence is now so strong that it would be [24] to ignore it.`,
-stems:['RELUCTANT','BIOLOGY','EQUIVALENT','DEPRIVE','GENERAL','MEASURE','CONVENIENT','RESPONSIBLE'],
-ans:[['reluctance'],['biological'],['equivalent'],['deprivation'],['generally'],['measurable'],['inconvenience'],['irresponsible']]},
+stems:['RELUCTANT','BIOLOGY','COMPARE','DEPRIVE','GENERAL','MEASURE','CONVENIENT','RESPONSIBLE'],
+ans:[['reluctance'],['biological'],['comparable'],['deprivation'],['generally'],['measurable'],['inconvenience'],['irresponsible']]},
 p4:[
 {s1:'"I\'m sorry I forgot your birthday," Tom said to Anna.',key:'APOLOGISED',s2:'Tom ___ Anna\'s birthday.',ans:['apologised for forgetting','apologised to anna for forgetting','apologised for having forgotten']},
 {s1:'I had never seen such a beautiful view before.',key:'MOST',s2:'It was ___ view I had ever seen.',ans:['the most beautiful']},

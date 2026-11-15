@@ -20,8 +20,8 @@ The causes of this decline are varied. In many cases, parents choose not to pass
 Why does it matter? Each language represents a [20] way of understanding the world. Some contain detailed knowledge of local plants and animals that has never been written down; others have grammatical structures that challenge assumptions about how language works. When a language disappears, this knowledge is lost, often [21].
 
 Fortunately, there have been some [22] successes. Welsh, once in steep decline, is now spoken by a growing number of young people, thanks to the [23] of Welsh-medium schools. Technology is also playing a role, with apps and online dictionaries making it easier to learn [24] spoken languages.`,
-stems:['SPEAK','EMPLOY','REMARK','DISTINCT','RETRIEVE','NOTE','EXPAND','RARE'],
-ans:[['speaker'],['employment'],['remarkably'],['distinct','distinctive'],['irretrievably'],['notable'],['expansion'],['rarely']]},
+stems:['SPEAK','EMPLOY','REMARK','DIFFER','RETRIEVE','NOTE','EXPAND','RARE'],
+ans:[['speaker'],['employment'],['remarkably'],['different','differing'],['irretrievably'],['notable'],['expansion'],['rarely']]},
 p4:[
 {s1:'I\'m sure she didn\'t mean to offend you.',key:'INTENTION',s2:'I\'m sure she ___ you.',ans:['had no intention of offending']},
 {s1:'People think the author wrote the novel in just three weeks.',key:'THOUGHT',s2:'The novel ___ been written in just three weeks.',ans:['is thought to have']},

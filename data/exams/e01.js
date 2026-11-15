@@ -23,7 +23,7 @@ p4:[
 {s1:'The weather was so bad that the match was cancelled.',key:'CALLED',s2:'The match ___ of the bad weather.',ans:['was called off because','had to be called off because','was called off on account']},
 {s1:'It is said that the castle was built in the twelfth century.',key:'HAVE',s2:'The castle is said ___ in the twelfth century.',ans:['to have been built']},
 {s1:'Sarah was the only person who didn\'t agree with the plan.',key:'EXCEPTION',s2:'With ___ Sarah, everyone agreed with the plan.',ans:['the exception of']},
-{s1:'You should take an umbrella because it might rain.',key:'CASE',s2:'You should take an umbrella ___ rain.',ans:['in case it rains','in case it should rain','just in case it rains']},
+{s1:'You should take an umbrella because it might rain.',key:'CASE',s2:'You should take an umbrella ___.',ans:['in case it rains','in case it should rain','just in case it rains']},
 {s1:'He was very surprised to be offered the job.',key:'CAME',s2:'Being offered the job ___ to him.',ans:['came as a great surprise','came as a complete surprise','came as quite a surprise','came as a big surprise','came as a surprise']}],
 p5:{title:'The accidental cook',text:`I did not learn to cook until I was thirty-four, and even then it was not by choice. For most of my adult life I had lived on a diet of sandwiches, takeaways and whatever my long-suffering partner put in front of me. When she took a job that kept her away from home four nights a week, I was faced with a stark choice: learn to feed myself or spend a small fortune on delivery apps.
 

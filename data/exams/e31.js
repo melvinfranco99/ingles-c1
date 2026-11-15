@@ -30,8 +30,8 @@ This business model has a [19] effect on how apps are designed. Many are deliber
 Companies also collect large amounts of data about their users, including their interests, location and behaviour, which allows advertisers to target them with [21] accuracy. Critics argue that this raises serious concerns about privacy, and that many users are [22] of how much information they are giving away.
 
 In response, some governments have introduced laws requiring companies to be more [23] about how they collect and use data. Some people have also begun to choose paid alternatives that do not rely on advertising. However, for most users, the [24] of free services remains hard to resist.`,
-stems:['PROFIT','FAME','SIGNIFY','ADDICT','REMARK','AWARE','TRANSPARENT','CONVENIENT'],
-ans:[['profitable'],['famous'],['significant'],['addictiveness','addiction'],['remarkable'],['unaware'],['transparent'],['convenience']]},
+stems:['PROFIT','FAME','SIGNIFY','ADDICT','REMARK','AWARE','TRUTH','CONVENIENT'],
+ans:[['profitable'],['famous'],['significant'],['addictiveness','addiction'],['remarkable'],['unaware'],['truthful'],['convenience']]},
 p4:[
 {s1:'"You\'d better see a doctor," Sarah told me.',key:'ADVISED',s2:'Sarah ___ a doctor.',ans:['advised me to see']},
 {s1:'People say that he is the richest man in the country.',key:'SAID',s2:'He ___ the richest man in the country.',ans:['is said to be']},

@@ -27,7 +27,7 @@ Today, billions of paper clips are made every year, although surveys suggest tha
 ans:[['into'],['who'],['but','yet','although','though'],['who'],['by'],['as'],['to'],['for']]},
 p3:{title:'The wetlands that store carbon',text:`When people think of natural ways to fight climate change, they usually think of forests. Yet peatlands, waterlogged landscapes found from Scotland to Siberia and Indonesia, store far more carbon. Although they cover only around three per cent of the world's land, they hold twice as much carbon as all the world's forests [17].
 
-Peat forms when dead plants, mainly mosses, fall into waterlogged ground and fail to [18] fully, because the lack of oxygen slows down the process. Over thousands of years, layers of partly decayed plant material build up, sometimes to a depth of several metres.
+Peat forms when dead plants, mainly mosses, fall into waterlogged ground and where their [18] is extremely slow because of the lack of oxygen. Over thousands of years, layers of partly decayed plant material build up, sometimes to a depth of several metres.
 
 For centuries, peatlands were seen as [19] land. They were drained to create farmland and forests, and peat was dug up to be burnt as fuel or sold to gardeners as compost. As a result, many have been severely [20].
 
@@ -37,7 +37,7 @@ Fortunately, damaged peatlands can be restored. The usual method is to block the
 
 Many governments have now pledged to restore peatlands, and some countries have banned the sale of peat compost. Campaigners argue that protecting these [24] landscapes should be a priority in the fight against climate change.`,
 stems:['COMBINE','DECOMPOSE','PRODUCE','DEGRADE','VULNERABILITY','BENEFIT','FLOOD','REMARK'],
-ans:[['combined'],['decompose'],['unproductive'],['degraded'],['vulnerable'],['benefits'],['flooding'],['remarkable']]},
+ans:[['combined'],['decomposition'],['unproductive'],['degraded'],['vulnerable'],['benefits'],['flooding'],['remarkable']]},
 p4:[
 {s1:'I\'d never seen such a beautiful sunset.',key:'MOST',s2:'It was ___ sunset I had ever seen.',ans:['the most beautiful']},
 {s1:'They are building a new hospital in the town.',key:'BUILT',s2:'A new hospital ___ in the town.',ans:['is being built']},
