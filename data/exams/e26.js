@@ -40,7 +40,7 @@ p4:[
 {s1:'You will only succeed if you work hard.',key:'UNLESS',s2:'You won\'t succeed ___ hard.',ans:['unless you work']},
 {s1:'The weather prevented us from going sailing.',key:'BECAUSE',s2:'We couldn\'t go sailing ___ weather.',ans:['because of the']},
 {s1:'Nobody in the class is as clever as Anna.',key:'CLEVEREST',s2:'Anna ___ in the class.',ans:['is the cleverest person','is the cleverest student','is the cleverest pupil']},
-{s1:'It took her a long time to recover from the illness.',key:'GET',s2:'It took her a long time to ___ the illness.',ans:['get over']}],
+{s1:'It took her a long time to recover from the illness.',key:'GET',s2:'It took her a long time ___ the illness.',ans:['to get over']}],
 p5:{title:'A season at sea',text:`At twenty, desperate for money and adventure in roughly equal measure, I signed up for a season on a fishing boat in the North Atlantic. The advertisement had promised "hard work, good pay". It was accurate on both counts, although it had somewhat understated the first.
 
 The boat was thirty metres long and carried a crew of nine. We spent between ten and fourteen days at sea on each trip, working in shifts of six hours on and six hours off, around the clock. In practice, the shifts often ran together when the catch was good, and I once worked for twenty hours without a break.

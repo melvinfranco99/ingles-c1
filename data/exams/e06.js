@@ -29,7 +29,7 @@ ans:[['excessive'],['hundreds'],['visible'],['disoriented','disorientated'],['di
 p4:[
 {s1:'I\'m sure that Paul didn\'t break the window deliberately.',key:'PURPOSE',s2:'Paul cannot have broken ___.',ans:['the window on purpose']},
 {s1:'Our flight was delayed because of the fog.',key:'RESULT',s2:'Our flight was delayed ___ the fog.',ans:['as a result of']},
-{s1:'"Why don\'t we go to the beach?" said Jane.',key:'SUGGESTED',s2:'Jane ___ to the beach.',ans:['suggested going','suggested that we go','suggested that we should go','suggested we go','suggested we should go']},
+{s1:'"Why don\'t we go to the beach?" said Jane.',key:'SUGGESTED',s2:'Jane ___ the beach.',ans:['suggested going to','suggested that we go to','suggested that we should go to','suggested we go to','suggested we should go to']},
 {s1:'It was wrong of you to shout at him.',key:'SHOULD',s2:'You ___ at him.',ans:['should not have shouted']},
 {s1:'She found it difficult to get used to the cold weather.',key:'DIFFICULTY',s2:'She ___ used to the cold weather.',ans:['had difficulty getting','had difficulty in getting','had great difficulty getting']},
 {s1:'The only reason I came to the party was to see you.',key:'SOLELY',s2:'I came to the party ___ you.',ans:['solely to see','solely in order to see','solely so that i could see','solely because i wanted to see']}],

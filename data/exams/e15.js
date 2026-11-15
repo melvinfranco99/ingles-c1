@@ -32,9 +32,9 @@ stems:['ACCUMULATE','ABLE','USE','INCREASE','EXPERIMENT','CHALLENGE','PREVENT','
 ans:[['accumulation'],['disable'],['unusable'],['increasingly'],['experimental'],['challenging'],['prevention'],['responsibility']]},
 p4:[
 {s1:'I didn\'t expect the film to be so good.',key:'BETTER',s2:'The film was ___ expected.',ans:['much better than i had','far better than i had','better than i had','a lot better than i','much better than i','far better than i']},
-{s1:'"I didn\'t take the money," said Jim.',key:'DENIED',s2:'Jim ___ the money.',ans:['denied taking','denied having taken','denied that he had taken','denied he had taken']},
+{s1:'"I didn\'t take the money," said Jim.',key:'HAVING',s2:'Jim ___ the money.',ans:['denied having taken']},
 {s1:'The weather was so bad that the flight was cancelled.',key:'DUE',s2:'The flight was cancelled ___ weather.',ans:['due to the bad','due to bad']},
-{s1:'It is possible that the parcel will arrive tomorrow.',key:'COULD',s2:'The parcel ___ tomorrow.',ans:['could arrive']},
+{s1:'It is possible that the parcel has already arrived.',key:'COULD',s2:'The parcel ___ already.',ans:['could have arrived']},
 {s1:'They started building the bridge two years ago.',key:'BEEN',s2:'The bridge ___ for two years.',ans:['has been under construction','has been being built']},
 {s1:'Sarah phoned me as soon as she arrived.',key:'SOONER',s2:'No ___ than she phoned me.',ans:['sooner had sarah arrived','sooner had she arrived']}],
 p5:{title:'A year of buying nothing new',text:`It began, as so many resolutions do, on New Year's Eve, after a glass or two of wine. Looking around our crowded flat, I announced to my partner that I would spend the next twelve months buying nothing new, apart from food and essential toiletries. He laughed and bet me fifty pounds that I would not last until March.

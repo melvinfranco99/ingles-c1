@@ -36,7 +36,7 @@ stems:['EXTINCT','ABANDON','NATURE','CONSIDER','ADEQUATE','CAUTION','EXIST','EFF
 ans:[['extinction'],['abandonment'],['natural'],['considerable'],['inadequate'],['cautious'],['coexist','co-exist'],['effectively']]},
 p4:[
 {s1:'Despite the rain, we went for a walk.',key:'EVEN',s2:'We went for a walk ___ raining.',ans:['even though it was']},
-{s1:'"I\'m sorry, I can\'t come to the party," said Helen.',key:'APOLOGISED',s2:'Helen ___ to the party.',ans:['apologised for not coming','apologised for not being able to come']},
+{s1:'"I\'m sorry, I can\'t come to the party," said Helen.',key:'APOLOGISED',s2:'Helen ___ to the party.',ans:['apologised for not coming']},
 {s1:'I\'d prefer you not to tell anyone.',key:'RATHER',s2:'I\'d ___ anyone.',ans:['rather you did not tell','rather you didn\'t tell']},
 {s1:'Someone is cleaning the windows at the moment.',key:'BEING',s2:'The windows ___ at the moment.',ans:['are being cleaned']},
 {s1:'You must finish the report today.',key:'HAS',s2:'The report ___ today.',ans:['has to be finished']},
