@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Examen C1 Advanced</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+</head>
+<body>
+<main class="wrap">
+<div class="paper-head"><h1 id="title">Examen</h1><div class="row"><a class="btn ghost sm" id="prev">◀ Anterior</a><a class="btn ghost sm" href="examenes.html">Todos</a><a class="btn ghost sm" id="next">Siguiente ▶</a></div></div>
+<p class="muted">Haz las cuatro pruebas en orden, respetando los tiempos. Corrige cada prueba al terminarla; al final verás tu nota aproximada en la escala Cambridge. En el Listening cada audio solo se puede escuchar <b>2 veces</b>, como en el examen real.</p>
+<div id="exam"></div>
+</main>
+<script src="assets/app.js"></script>
+<script>
+window.SHUFFLE = true;
+const TOTAL = SITE.exams;
+const N = Math.min(TOTAL, Math.max(1, parseInt(new URLSearchParams(location.search).get('n')) || 1));
+document.title = `Examen ${N} · ${SITE.name}`;
+$('#title').textContent = `Examen ${N} de ${TOTAL}`;
+$('#prev').href = `examen.html?n=${Math.max(1, N - 1)}`;
+$('#next').href = `examen.html?n=${Math.min(TOTAL, N + 1)}`;
+
+/* PAPERS: clave → [nombre, peso en la nota global] */
+const PAPERS = { rue: ['Reading & Use of English', 2], wri: ['Writing', 1], lis: ['Listening', 1], spk: ['Speaking', 1] };
+function saveResult(key, score, max) {
+  const all = store.get('results', {}); const r = all[N] || {};
+  r[key] = Math.round(toScale(score / max));
+  r[key + 'Raw'] = `${score}/${max}`;
+  const ks = Object.keys(PAPERS).filter(k => r[k]);
+  const w = ks.reduce((a, k) => a + PAPERS[k][1], 0);
+  r.overall = Math.round(ks.reduce((a, k) => a + r[k] * PAPERS[k][1], 0) / w);
+  r.complete = Object.keys(PAPERS).every(k => r[k]);
+  r.date = new Date().toISOString().slice(0, 10);
+  all[N] = r; store.set('results', all);
+  showResults();
+}
+function scoreBox(score, max) {
+  const sc = toScale(score / max), [g, cls] = grade(sc);
+  return `<div class="score ${cls}">Puntuación: ${score}/${max} (${Math.round(score / max * 100)} %) → <b>${sc}</b> en la escala Cambridge · ${g}</div>`;
+}
+
+/* Prueba con partes autocorregibles. parts = [[título, instrucciones, tipo, datos, ...args]] */
+function paper(container, key, minutes, parts, note = '') {
+  const head = document.createElement('div'); head.className = 'paper-head';
+  head.innerHTML = `<h2 style="border:0">${PAPERS[key][0]}</h2>`;
+  head.append(timer(minutes * 60, `Empezar (${minutes} min)`));
+  container.append(head);
+  if (note) container.insertAdjacentHTML('beforeend', `<p class="small muted">${note}</p>`);
+  const rs = [];
+  parts.forEach(([title, instr, type, data, ...args]) => {
+    const sec = document.createElement('section');
+    sec.innerHTML = `<h3 class="part-title">${title}</h3><p class="instr">${instr}</p>`;
+    const body = document.createElement('div'); sec.append(body); container.append(sec);
+    rs.push(R[type](body, data, ...args));
+  });
+  const foot = document.createElement('div'); foot.innerHTML = `<button class="btn">✔ Corregir ${PAPERS[key][0]}</button><div class="res"></div>`;
+  container.append(foot);
+  const btn = $('button', foot);
+  const update = () => { const t = rs.reduce((a, r) => { const s = r.score(); return [a[0] + s.score, a[1] + s.max]; }, [0, 0]); $('.res', foot).innerHTML = scoreBox(t[0], t[1]); saveResult(key, t[0], t[1]); };
+  btn.onclick = () => { if (!confirmLeft(container)) return; rs.forEach(r => r.check()); btn.disabled = true; TTS.stop(); update(); };
+  scoreHooks.push(() => btn.disabled && update());
+}
+function confirmLeft(c) {
+  const empty = $$('input[type=text],select', c).filter(x => !x.value).length;
+  const radiosQ = $$('.q', c).filter(q => $('input[type=radio]', q) && !$('input:checked', q)).length;
+  const n = empty + radiosQ;
+  if (!n) return true;
+  const w = c.querySelector('.leftwarn') || document.createElement('div');
+  w.className = 'warn leftwarn';
+  if (w.dataset.ok) return true;
+  w.innerHTML = `Te quedan <b>${n}</b> respuestas en blanco. En el examen real <b>no restan</b>: ¡rellénalas! Pulsa «Corregir» otra vez si quieres corregir igualmente.`;
+  w.dataset.ok = 1; c.lastElementChild.before(w); return false;
+}
+const sel05 = () => `<select>${[0, 1, 2, 3, 4, 5].map(v => `<option ${v === 3 ? 'selected' : ''}>${v}</option>`).join('')}</select>`;
+
+/* Writing autoevaluado. tasks = [{title, html, min, max, choose?:[{label, html}]}] */
+function writingPaper(c, minutes, intro, tasks, crits) {
+  const head = document.createElement('div'); head.className = 'paper-head';
+  head.innerHTML = `<h2 style="border:0">${PAPERS.wri[0]}</h2>`; head.append(timer(minutes * 60, `Empezar (${minutes} min)`)); c.append(head);
+  c.insertAdjacentHTML('beforeend', `<p class="instr">${intro} Consulta los <a href="writing.html">modelos</a> solo después de escribir.</p>`);
+  tasks.forEach((t, ti) => {
+    c.insertAdjacentHTML('beforeend', `<h3 class="part-title">${t.title}</h3>${t.html || ''}${t.choose ? t.choose.map((o, i) => `<label class="opt card" style="display:flex"><input type="radio" name="wc${ti}" value="${i}" ${i === 0 ? 'checked' : ''}><span><b>${o.label}</b><br>${o.html}</span></label>`).join('') : ''}<div class="wbox"></div>`);
+    $$('.wbox', c).pop().append(writingBox(`ex${N}.w${ti + 1}`, t.min, t.max));
+  });
+  c.insertAdjacentHTML('beforeend', `<h3 class="part-title">Autoevaluación</h3><p class="small muted">Cuando termines, compara con los modelos de la sección Writing y puntúa con sinceridad cada criterio de 0 a 5 (3 = aprobado justo, 5 = excelente). Si puedes, pide a un profesor que te lo corrija.</p>
+   <div class="crit wcrit"></div><button class="btn wsave" style="margin-top:.6rem">Guardar nota de Writing</button><div class="wres"></div>`);
+  const labels = tasks.length > 1 ? tasks.map((t, i) => `Tarea ${i + 1}`) : [''];
+  $('.wcrit', c).innerHTML = labels.map(p => crits.map(k => `<span>${p ? p + ' · ' : ''}${k}</span>${sel05()}`).join('')).join('');
+  const max = labels.length * crits.length * 5;
+  $('.wsave', c).onclick = () => { const s = $$('.wcrit select', c).reduce((a, x) => a + +x.value, 0); $('.wres', c).innerHTML = scoreBox(s, max); saveResult('wri', s, max); };
+}
+
+/* Speaking autoevaluado. parts = [{title, html, time}] */
+function speakingPaper(c, intro, parts, crits) {
+  c.insertAdjacentHTML('beforeend', `<div class="paper-head"><h2 style="border:0">Speaking</h2></div><p class="instr">${intro}</p>`);
+  parts.forEach(p => { c.insertAdjacentHTML('beforeend', `<h3 class="part-title">${p.title}</h3>${p.html}<div class="tslot"></div>`); const el = $$('.tslot', c).pop(); el.append(timer(p.time)); el.append(recorder()); });
+  c.insertAdjacentHTML('beforeend', `<h3 class="part-title">Autoevaluación</h3><p class="small muted">Escucha tus grabaciones y puntúa de 0 a 5.</p><div class="crit scrit"></div><button class="btn ssave" style="margin-top:.6rem">Guardar nota de Speaking</button><div class="sres"></div>`);
+  speakables(c);
+  $('.scrit', c).innerHTML = crits.map(k => `<span>${k}</span>${sel05()}`).join('');
+  const max = crits.length * 5;
+  $('.ssave', c).onclick = () => { const v = $$('.scrit select', c).reduce((a, x) => a + +x.value, 0); $('.sres', c).innerHTML = scoreBox(v, max); saveResult('spk', v, max); };
+}
+const ul = (qs, say = true) => `<ul>${qs.map(q => `<li ${say ? 'data-say' : ''}>${q}</li>`).join('')}</ul>`;
+
+function showResults() {
+  const r = store.get('results', {})[N]; const el = $('#results'); if (!el) return;
+  if (!r) { el.innerHTML = '<p class="muted">Aún no has corregido ninguna prueba de este examen.</p>'; return; }
+  const [g, cls] = grade(r.overall);
+  el.innerHTML = `<div class="table-wrap"><table><tr><th>Prueba</th><th>Bruto</th><th>Escala</th></tr>${Object.entries(PAPERS).map(([k, [n]]) => `<tr><td>${n}</td><td>${r[k + 'Raw'] || '—'}</td><td>${r[k] || '—'}</td></tr>`).join('')}</table></div>
+   <div class="score ${cls}">Nota global${r.complete ? '' : ' (provisional: faltan pruebas)'}: <b>${r.overall}</b> · ${g}</div>
+   <p class="small muted">La conversión a la escala es aproximada (≈60 % = 180, aprobado; ≈80 % = 200, nivel C2). Reading &amp; Use of English cuenta doble (40 %).</p>
+   ${N < TOTAL ? `<a class="btn" href="examen.html?n=${N + 1}">Mañana: examen ${N + 1} →</a>` : `<p><b>¡Has completado los ${TOTAL} exámenes! Estás preparado/a.</b></p>`}`;
+}
+
+/* ===== Estructura específica de este nivel ===== */
+function render(d) {
+  const root = $('#exam');
+  root.innerHTML = `<div class="tabs-root" id="extabs"><div class="tabs"><button>1 · Reading &amp; UoE</button><button>2 · Writing</button><button>3 · Listening</button><button>4 · Speaking</button><button>📊 Resultados</button></div>
+   <section class="tabpanel" id="pr"></section><section class="tabpanel" id="pw"></section><section class="tabpanel" id="pl"></section><section class="tabpanel" id="ps"></section><section class="tabpanel"><h2>Resultados del examen ${N}</h2><div id="results"></div></section></div>`;
+  paper($('#pr'), 'rue', 90, [
+    ['Part 1', 'For questions 1–8, read the text and decide which answer (A, B, C or D) best fits each gap.', 'p1', d.p1],
+    ['Part 2', 'For questions 9–16, think of the word which best fits each gap. Use only ONE word in each gap.', 'p2', d.p2],
+    ['Part 3', 'For questions 17–24, use the word given in capitals to form a word that fits in the gap.', 'p3', d.p3],
+    ['Part 4', 'For questions 25–30, complete the second sentence so that it has a similar meaning to the first sentence, using the word given. Do not change the word given. You must use between THREE and SIX words, including the word given.', 'p4', d.p4, 2, 25],
+    ['Part 5', 'You are going to read an extract. For questions 31–36, choose the answer (A, B, C or D) which you think fits best according to the text.', 'p5', d.p5, 2, 31],
+    ['Part 6', 'You are going to read four extracts. For questions 37–40, choose from the extracts A–D. The extracts may be chosen more than once.', 'p7', d.p6, 2, 37],
+    ['Part 7', 'Six paragraphs have been removed from the extract. Choose from the paragraphs A–G the one which fits each gap (41–46). There is one extra paragraph which you do not need to use.', 'p6', { ...d.p7, paras: true }],
+    ['Part 8', 'For questions 47–56, choose from the sections. The sections may be chosen more than once.', 'p7', d.p8, 1, 47],
+  ]);
+  const w = d.w1;
+  writingPaper($('#pw'), 90, 'Escribe dos textos de 220–260 palabras: la Parte 1 es obligatoria y en la Parte 2 eliges una tarea.', [
+    { title: 'Part 1 · Essay (obligatorio)', min: 220, max: 260, html: `<div class="card"><p>Your class has attended a panel discussion on <b>${w.topic}</b>. You have made the notes below.</p><div class="notice"><b>${w.q}</b><ul>${w.notes.map(n => `<li>${n}</li>`).join('')}</ul><b>Some opinions expressed in the discussion:</b><ul>${w.opinions.map(n => `<li><i>"${n}"</i></li>`).join('')}</ul></div><p>Write an essay discussing <b>two</b> of the points in your notes. You should <b>explain ${w.task}</b>, giving reasons in support of your answer. You may, if you wish, make use of the opinions expressed in the discussion, but you should use your own words as far as possible.</p></div>` },
+    { title: 'Part 2 · Elige una', min: 220, max: 260, choose: d.w2.map((t, i) => ({ label: `${i + 2}. ${t.type}`, html: t.task })) },
+  ], ['Content', 'Communicative Achievement', 'Organisation', 'Language']);
+  paper($('#pl'), 'lis', 40, [
+    ['Part 1', 'You will hear three different extracts. For questions 1–6, choose the answer (A, B or C) which fits best according to what you hear.', 'lx', d.l1, 2, 1],
+    ['Part 2', 'For questions 7–14, complete the sentences with a word or short phrase.', 'l2', d.l2, 2, 7],
+    ['Part 3', 'For questions 15–20, choose the answer (A, B, C or D) which fits best according to what you hear.', 'l4', d.l3, 2, 15],
+    ['Part 4', 'You will hear five short extracts. While you listen, you must complete BOTH tasks (questions 21–30).', 'l3x', d.l4, 2, 21],
+  ]);
+  const s = d.s;
+  speakingPaper($('#ps'), 'Habla en voz alta, a ser posible con un compañero. Usa el temporizador y la grabadora. Pulsa 🔊 para oír al examinador.', [
+    { title: 'Part 1 · Interview (2 min)', time: 120, html: ul(s.p1) },
+    { title: 'Part 2 · Long turn (1 min)', time: 60, html: `<p data-say><b>${s.p2.q}</b></p>${s.p2.pics.map((p, i) => `<div class="photo"><b>Picture ${i + 1}:</b> ${p}</div>`).join('')}<p class="small">Elige <b>dos</b> de las tres fotos y habla durante 1 minuto. Después, pregunta para tu compañero (30 seg.): <i data-say>${s.p2.f}</i></p>` },
+    { title: 'Part 3 · Collaborative task (2 min + 1 min)', time: 180, html: `<div class="card"><p data-say><b>${s.p3.q}</b></p><ul>${s.p3.ideas.map(i => `<li>${i}</li>`).join('')}</ul><p data-say><i>${s.p3.d}</i></p></div>` },
+    { title: 'Part 4 · Discussion (5 min)', time: 300, html: ul(s.p4) },
+  ], ['Grammar Resource', 'Lexical Resource', 'Discourse Management', 'Pronunciation', 'Interactive Communication', 'Global Achievement']);
+  tabs($('#extabs'));
+  showResults();
+}
+
+window.EXAM = render;
+const sc = document.createElement('script');
+sc.src = `data/exams/e${String(N).padStart(2, '0')}.js`;
+sc.onerror = () => $('#exam').innerHTML = '<div class="warn">No se ha podido cargar este examen.</div>';
+document.addEventListener('DOMContentLoaded', () => document.body.append(sc));
+</script>
+</body>
+</html>

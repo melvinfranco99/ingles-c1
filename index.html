@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C1 Advanced · Preparación</title>
+<meta name="description" content="Todo para aprobar el Cambridge C1 Advanced (CAE) en España: explicaciones en español, gramática avanzada, Use of English, vocabulario, práctica interactiva y 50 exámenes completos.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+</head>
+<body>
+<main class="wrap">
+  <h1>Aprueba el C1 Advanced (Cambridge) 🎓</h1>
+  <p>Esta web contiene <b>todo lo que necesitas</b> para presentarte al <b>Cambridge C1 Advanced (antes CAE)</b> en España con garantías: cómo es el examen, la gramática avanzada y el vocabulario de nivel C1 explicados en español, técnicas para cada una de las 8 partes del Reading &amp; Use of English, modelos de Writing, audios para el Listening, guía de Speaking con grabadora y <b>50 exámenes completos</b> para hacer uno al día.</p>
+
+  <div class="card" id="progress"></div>
+
+  <h2>Cómo usar esta web (en orden)</h2>
+  <div class="grid">
+    <a class="tile" href="guia.html"><h3>1 · El examen</h3><p>Estructura, tiempos, puntuación, cómo se aprueba y qué hacer el día del examen.</p></a>
+    <a class="tile" href="gramatica.html"><h3>2 · Gramática</h3><p>La gramática avanzada que se evalúa en el C1, explicada en español y con ejercicios.</p></a>
+    <a class="tile" href="vocabulario.html"><h3>3 · Vocabulario</h3><p>Collocations, phrasal verbs, expresiones idiomáticas, formación de palabras y registro formal.</p></a>
+    <a class="tile" href="use-of-english.html"><h3>4 · Use of English</h3><p>Partes 1–4: estrategias, trampas habituales y ejercicios de cada tipo.</p></a>
+    <a class="tile" href="reading.html"><h3>5 · Reading</h3><p>Partes 5–8: cómo leer textos largos y difíciles sin perder tiempo.</p></a>
+    <a class="tile" href="writing.html"><h3>6 · Writing</h3><p>Ensayo, email/carta, informe, propuesta y reseña, con estructuras y modelos.</p></a>
+    <a class="tile" href="listening.html"><h3>7 · Listening</h3><p>Las 4 partes con audios generados en el navegador y transcripciones.</p></a>
+    <a class="tile" href="speaking.html"><h3>8 · Speaking</h3><p>Las 4 partes, frases de nivel C1, temporizador y grabadora.</p></a>
+    <a class="tile" href="plan.html"><h3>9 · Plan de 50 días</h3><p>Qué repasar cada día además del examen diario.</p></a>
+    <a class="tile" href="examenes.html"><h3>10 · 50 exámenes</h3><p>Exámenes completos (las 4 pruebas) con nota en la escala Cambridge.</p></a>
+  </div>
+
+  <h2>El examen en 30 segundos</h2>
+  <div class="table-wrap"><table>
+    <tr><th>Prueba</th><th>Duración</th><th>Partes / preguntas</th><th>Peso</th></tr>
+    <tr><td><b>Reading &amp; Use of English</b></td><td>1 h 30</td><td>8 partes · 56 preguntas</td><td>40 %</td></tr>
+    <tr><td><b>Writing</b></td><td>1 h 30</td><td>2 textos de 220–260 palabras (ensayo obligatorio + uno a elegir)</td><td>20 %</td></tr>
+    <tr><td><b>Listening</b></td><td>≈ 40 min</td><td>4 partes · 30 preguntas</td><td>20 %</td></tr>
+    <tr><td><b>Speaking</b></td><td>15 min (en pareja)</td><td>4 partes</td><td>20 %</td></tr>
+  </table></div>
+  <div class="key"><p><b>Para aprobar necesitas 180 puntos</b> de media en la Cambridge English Scale (aprox. un 60 % del total). No hay nota mínima por prueba: una destreza fuerte compensa una débil. Con 200 o más obtienes el <b>Grade A</b> y un certificado de nivel <b>C2</b>; entre 160 y 179 recibes un certificado de nivel B2.</p></div>
+
+  <h2>Sobre el audio</h2>
+  <p>Los Listening se reproducen con la <b>voz sintética de tu navegador</b>, así funcionan sin descargar nada. Para que suenen mejor usa <b>Chrome o Edge</b> (tienen voces británicas naturales). En el C1 el audio real va a velocidad natural: practica al final siempre en <i>normal</i>. Si alguna vez no oyes nada, abre la transcripción.</p>
+  <p class="small muted">Material original creado para practicar con el formato oficial. No está afiliado a Cambridge University Press &amp; Assessment. Tu progreso se guarda solo en este navegador.</p>
+</main>
+<script src="assets/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const res = store.get('results', {});
+  const done = Object.keys(res).length;
+  const scores = Object.values(res).map(r => r.overall).filter(Boolean);
+  const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
+  $('#progress').innerHTML = `<div class="row" style="justify-content:space-between"><b>Tu progreso</b><span class="small muted">${done}/50 exámenes hechos</span></div>
+   <div class="bar" style="margin:.5rem 0"><i style="width:${done * 2}%"></i></div>
+   ${avg ? `<p>Media de tus exámenes: <b>${avg}</b> · ${grade(avg)[0]}</p>` : `<p class="muted">Aún no has hecho ningún examen. Lee primero las secciones 1–8 y luego empieza el <a href="examen.html?n=1">Examen 1</a>.</p>`}
+   ${done ? `<a class="btn" href="examen.html?n=${Math.min(50, done + 1)}">Continuar: examen ${Math.min(50, done + 1)} →</a>` : ''}`;
+});
+</script>
+</body>
+</html>

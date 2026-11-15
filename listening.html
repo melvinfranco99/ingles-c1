@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Listening · C1 Advanced</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+</head>
+<body>
+<main class="wrap">
+<h1>Listening</h1>
+<p>Unos <b>40 minutos</b>, 4 partes y 30 preguntas. Cada audio se oye <b>dos veces</b>. Las grabaciones son a velocidad natural, con opiniones implícitas, ironía y matices: rara vez se dice la respuesta de forma literal.</p>
+<div class="tip"><b>Antes de cada parte</b> tienes unos segundos para leer: subraya las palabras clave de cada pregunta y piensa en <b>sinónimos</b> que podrías oír. En la práctica puedes repetir el audio sin límite; en los exámenes, solo 2 veces.</div>
+
+<div class="tabs-root" id="listabs">
+<div class="tabs"><button>Parte 1</button><button>Parte 2</button><button>Parte 3</button><button>Parte 4</button></div>
+
+<section class="tabpanel">
+<h2>Parte 1 · Tres conversaciones</h2>
+<p>Tres extractos independientes de unos 60 segundos (normalmente diálogos). Cada uno tiene <b>2 preguntas</b> de 3 opciones sobre opinión, actitud, propósito o acuerdo entre hablantes.</p>
+<ul><li>Preguntas típicas: <i>What do they both think about…? · What is the woman’s attitude to…? · Why does the man mention…?</i></li>
+<li>«Both agree»: la respuesta debe ser válida para <b>los dos</b> hablantes.</li></ul>
+<div id="lp1"></div>
+</section>
+
+<section class="tabpanel">
+<h2>Parte 2 · Completar frases</h2>
+<p>Un monólogo de 3–4 minutos (charla, conferencia). Completas <b>8 frases</b> con la palabra o frase corta que oyes.</p>
+<ul><li>Escribe <b>exactamente</b> lo que oyes (1–3 palabras); la ortografía cuenta.</li>
+<li>Las frases siguen el orden del audio, pero están parafraseadas: escucha la idea, no la frase.</li>
+<li>Suele haber distractores: el hablante menciona una cosa y luego se corrige (<i>I’d expected… but in fact…</i>).</li></ul>
+<div id="lp2"></div>
+</section>
+
+<section class="tabpanel">
+<h2>Parte 3 · Entrevista</h2>
+<p>Una entrevista o conversación de unos 4 minutos con <b>6 preguntas</b> de 4 opciones. Se centra en opiniones, actitudes y sentimientos.</p>
+<ul><li>Lee las preguntas y las raíces (no todas las opciones) antes de escuchar.</li>
+<li>Desconfía de la opción que repite palabras del audio.</li></ul>
+<div id="lp3"></div>
+</section>
+
+<section class="tabpanel">
+<h2>Parte 4 · Multiple matching (dos tareas)</h2>
+<p>Cinco hablantes cortos (unos 30 s cada uno) sobre un tema común. Hay <b>dos tareas</b>: por ejemplo, <i>por qué</i> hicieron algo (tarea 1) y <i>qué aprendieron</i> (tarea 2). Cada tarea tiene 8 opciones; sobran 3.</p>
+<div class="key"><b>Estrategia:</b> en la primera escucha céntrate en la tarea 1; en la segunda, en la tarea 2 (y confirma la 1). Intentar hacer las dos a la vez la primera vez suele causar errores.</div>
+<div id="lp4"></div>
+</section>
+</div>
+<p><a class="btn" href="speaking.html">Siguiente: Speaking →</a></p>
+</main>
+<script src="assets/app.js"></script>
+<script>
+const LP1 = [
+ {ctx:'You hear two friends talking about a novel they have both read.',script:[['W','So, did you finish it in the end?'],['M','I did, though I nearly gave up halfway. The first hundred pages were wonderful, but then it just seemed to lose its way.'],['W','I know what you mean. All those flashbacks – I kept losing track of who was who.'],['M','Exactly. And yet the ending more or less made up for it. I didn\'t see that coming at all.'],['W','Hmm, I found it a bit too neat, to be honest. As if the author had run out of ideas and just wanted to tie everything up.']],
+  q:[{q:'What do they agree about?',o:['The middle of the book was confusing.','The opening was disappointing.','The ending was unexpected.']},{q:'What is the woman\'s opinion of the ending?',o:['It was too convenient.','It was beautifully written.','It was hard to understand.']}]},
+ {ctx:'You hear a man and a woman discussing working from home.',script:[['M','How are you finding it, now that you\'re at home full-time?'],['W','Honestly? I thought I\'d love it. No commute, no office politics. But I\'ve realised how much I relied on bumping into people – that\'s where half my ideas came from.'],['M','I\'m the opposite. I get far more done without constant interruptions. Though I\'ll admit the line between work and home has more or less disappeared.'],['W','That\'s the danger, isn\'t it? I find myself answering emails at eleven at night.']],
+  q:[{q:'What has the woman discovered about working from home?',o:['She misses informal contact with colleagues.','She is less productive than in the office.','She enjoys the lack of office politics.']},{q:'What problem do they both mention?',o:['Work interferes with their personal time.','They have too many interruptions.','They feel isolated.']}]},
+ {ctx:'You hear part of a radio discussion about a new art gallery.',script:[['W','The building itself is extraordinary – it\'s already become a landmark. But I\'m less sure about what\'s inside.'],['M','You think the collection\'s weak?'],['W','Not weak exactly. It\'s just that the architecture is so dramatic that the paintings seem almost an afterthought. You come out remembering the staircase rather than the art.'],['M','I\'d argue that\'s no bad thing if it brings in people who\'d never normally set foot in a gallery. Visitor numbers have been remarkable.']],
+  q:[{q:'What criticism does the woman make of the gallery?',o:['The building overshadows the artworks.','The collection is too small.','The staircase is badly designed.']},{q:'The man suggests that the gallery',o:['is attracting a new audience.','should change its collection.','has been too expensive.']}]}];
+const LP2 = {intro:'You will hear a marine biologist called Dr Ruth Okafor talking about her work on coral reefs.',g:'W',script:`Thank you for having me. I've been studying coral reefs for nearly twenty years, mostly in the Indian Ocean. People often assume that coral is a plant, or even a rock, but it is in fact an animal – a colony of tiny creatures called polyps.
+
+What gives coral its colour is a type of algae that lives inside it. When the water becomes too warm, the coral expels the algae and turns white. This is known as bleaching, and while coral can recover from it, repeated bleaching events usually prove fatal.
+
+When I started my research, I expected pollution to be the main threat. In fact, rising sea temperatures have turned out to be far more damaging. In some areas we monitor, we've lost more than half of the coral cover in a decade.
+
+There are reasons for hope, though. One project I'm involved in is growing coral fragments in underwater nurseries – rather like a garden – and then transplanting them onto damaged reefs. The survival rate has been around seventy per cent, which is much higher than we predicted.
+
+We're also learning that some corals are naturally more resistant to heat. By breeding these, we may be able to create reefs that can survive in warmer seas. It's controversial, of course; some colleagues argue that we're interfering with nature.
+
+Local communities are crucial to all of this. Many depend on the reefs for fishing and tourism, and in my experience they are the most effective guardians. Ultimately, though, no amount of restoration will be enough unless we tackle the underlying cause, which is climate change.`,
+sents:['Ruth has carried out most of her research in the ___ Ocean.','Coral is made up of small animals known as ___.','The colour of coral comes from ___ living inside it.','Ruth originally thought the biggest danger to reefs was ___.','Ruth compares the underwater nurseries to a ___.','About ___ of the transplanted coral survives.','Some scientists believe breeding heat-resistant coral means ___ with nature.','Ruth considers ___ to be the best protectors of reefs.'],
+ans:[['indian'],['polyps'],['algae','a type of algae'],['pollution'],['garden'],['70 per cent','seventy per cent','70%','70'],['interfering'],['local communities','communities']]};
+const LP3 = {intro:'You will hear an interview with a novelist called Daniel Reeve, who has recently published his first book at the age of sixty.',names:{W:'Interviewer',M:'Daniel'},script:[
+['W','Daniel, you\'ve described yourself as a "late bloomer". Why did it take so long to write your first novel?'],
+['M','I\'d love to say I was too busy, but that isn\'t really true. I always wanted to write, but I was terrified of being bad at it. As long as I didn\'t try, I could go on believing I had a great book inside me.'],
+['W','So what changed?'],
+['M','My wife, really. She gave me a notebook for my fifty-fifth birthday with "No more excuses" written on the first page. It was a joke, but it stung, because she was right.'],
+['W','The novel is set in a small fishing town. Is that drawn from your own life?'],
+['M','The setting is, yes – I grew up in a place very like it. But people keep asking me which character is my father, and the answer is none of them. If anything, the characters are versions of me at different ages.'],
+['W','Did your career as an accountant help in any way?'],
+['M','More than I expected. Accountancy teaches you discipline – you can\'t wait for inspiration to file someone\'s tax return. I treated writing in the same way: two hours every morning, whether I felt like it or not.'],
+['W','The reviews have been very positive. How does that feel?'],
+['M','Strange, if I\'m honest. I\'d prepared myself for criticism, and praise is harder to know what to do with. I keep thinking someone will realise there\'s been a mistake.'],
+['W','And what advice would you give to people who think they\'ve left it too late?'],
+['M','That age can actually be an advantage. You\'ve lived, you\'ve made mistakes, you\'ve got something to say. The only real failure is never starting.']],
+q:[{q:'Why did Daniel delay writing a novel?',o:['He was afraid of discovering he lacked talent.','He had too little free time.','He did not have a good idea for a story.','He did not think anyone would read it.']},
+{q:'How did Daniel react to his wife\'s present?',o:['He recognised that her message was justified.','He was offended by it.','He found it amusing but ignored it.','He immediately started writing.']},
+{q:'What does Daniel say about the characters in his novel?',o:['They reflect aspects of himself.','One of them is based on his father.','They are people from his home town.','They are completely imaginary.']},
+{q:'According to Daniel, his previous career',o:['taught him to work consistently.','gave him ideas for the plot.','made it hard to find time to write.','helped him to sell the book.']},
+{q:'How does Daniel feel about the positive reviews?',o:['He finds them difficult to accept.','He is proud of them.','He expected them.','He does not read them.']},
+{q:'What is Daniel\'s message to older aspiring writers?',o:['Experience can be a benefit.','They should study writing first.','They should write every day.','It is better to start young.']}]};
+const LP4 = {intro:'You will hear five people talking about learning to play a musical instrument as adults.',speakers:[
+{g:'W',t:'I\'d always regretted giving up the piano as a child, and when my kids started lessons I thought, why not join them? What surprised me was how much patience it takes. Children seem to absorb everything, whereas I have to go over the same few bars again and again. Still, I\'ve learnt to be kinder to myself.'},
+{g:'M',t:'My doctor suggested I find something to help with stress, and I\'d always fancied the drums – perfect for letting off steam! The real revelation, though, has been the social side. I joined a band with three other beginners, and we\'ve become close friends.'},
+{g:'W2',t:'I took up the cello after hearing it at a friend\'s wedding – I was moved to tears. I hadn\'t realised how physically demanding it would be; my back ached for weeks. But practising has taught me to concentrate in a way I never could before. My phone stays in another room.'},
+{g:'M2',t:'Honestly, it started as a bet. A colleague said I couldn\'t learn the guitar in a year, so of course I had to prove him wrong. I won the bet, but more importantly I discovered I actually enjoy the theory – understanding why certain chords work together is fascinating.'},
+{g:'W',t:'After I retired I had time on my hands and wanted a challenge to keep my mind sharp. I chose the violin because everyone said it was the hardest. They were right! I\'ve realised that progress isn\'t a straight line – some weeks I seem to go backwards, and that\'s fine.'}],
+tasks:[{instr:'For questions 1–5, choose from the list (A–H) the reason each speaker gives for starting.',opts:['wanting to share an activity with family','a recommendation from a health professional','an emotional reaction to a performance','a challenge from someone else','a desire to keep mentally active','a gift from a relative','a wish to make new friends','a childhood dream']},
+{instr:'For questions 6–10, choose from the list (A–H) what each speaker has gained or learnt.',opts:['to be less critical of themselves','the value of friendship','the ability to focus','an interest in how music works','an acceptance of uneven progress','confidence in performing','a better posture','a talent for composing']}]};
+document.addEventListener('DOMContentLoaded', () => {
+  practice($('#lp1'), 'lx', LP1, {args:[null]});
+  practice($('#lp2'), 'l2', LP2, {args:[null]});
+  practice($('#lp3'), 'l4', LP3, {args:[null]});
+  practice($('#lp4'), 'l3x', LP4, {args:[null]});
+});
+</script>
+</body>
+</html>
